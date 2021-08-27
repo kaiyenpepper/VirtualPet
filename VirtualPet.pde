@@ -1,14 +1,7 @@
-//import arduino
-import processing.serial.*;
-import cc.arduino.*;
-Arduino arduino;
-
-//setup display and arduino
+//setup display
 void setup()
 {
   size(600,550);
-  arduino = new Arduino(this, Arduino.list()[1], 57600);
-  //change the [0] to a [1] or [2] etc. if your program doesn't work
   noStroke();
   drawCrow();
 }
