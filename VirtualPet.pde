@@ -17,34 +17,7 @@ void setup()
 //draw virtual pet
 void draw()
 {
-//arduino stuff
-  int y = arduino.analogRead(5);
-  System.out.println(y);
-    if (y>45){
-     background(245,163,62);
-     
-     //talking crow
-     drawCrow();
-     triangle(225,155,270,140,300,230);
-     fill(237,96,96);
-     triangle(225,155,252,147,285,210);
-     fill(250,230,78);
-     triangle(220,155,335,125,265,160);
-     
-  } else {
-     background(209,120,36);
-     textAlign(CENTER);
-     PFont font = loadFont("CenturyGothic-BoldItalic-48.vlw");
-     textFont(font,32);
-     text("Shut up Crow!", 450, 150);
-     
-     //sad crow
-     drawCrow();
-     stroke(0,0,0);
-     noFill();
-     line(225,150,305,235);
-     noStroke();
-  } 
+drawCrow();
 
 }
 
