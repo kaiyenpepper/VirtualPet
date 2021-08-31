@@ -1,7 +1,14 @@
-//setup display
+//import arduino
+import processing.serial.*;
+import cc.arduino.*;
+Arduino arduino;
+
+//setup display and arduino
 void setup()
 {
   size(600,550);
+  arduino = new Arduino(this, Arduino.list()[1], 57600);
+  //change the [0] to a [1] or [2] etc. if your program doesn't work
   noStroke();
   drawCrow();
 }
@@ -10,7 +17,43 @@ void setup()
 //draw virtual pet
 void draw()
 {
-drawCrow();
+//arduino stuff
+  int y = arduino.analogRead(5);
+  System.out.println(y);
+    if (y>25){
+     background(245,163,62);
+     
+     //talking crow
+     drawCrow();
+     //black mouth (left, right, bottom)
+     triangle(225,155,270,140,300,230);
+     //tongue (left, right, bottom)
+     fill(237,96,96);
+     triangle(230,155,260,147,285,210);
+     fill(250,230,78);
+     //top beak (left, right, bottom) 305,240; 275,140
+     triangle(220,155,305+y/2.5,240-y/1.5,275,140);
+     textAlign(CENTER);
+     PFont font = loadFont("CenturyGothic-BoldItalic-48.vlw");
+     textFont(font,36);
+     fill(48,48,48);
+     text("♪", 450, 100+y/2);
+     text("♫", 500, 200-y/2);
+     
+  } else {
+     background(245,163,62);
+     textAlign(CENTER);
+     PFont font = loadFont("CenturyGothic-BoldItalic-48.vlw");
+     textFont(font,32);
+     text("Shut up Crow!", 450, 150);
+     
+     //sad crow
+     drawCrow();
+     stroke(0,0,0);
+     noFill();
+     line(225,150,305,235);
+     noStroke();
+  } 
 
 }
 
