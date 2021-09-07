@@ -22,9 +22,10 @@ void draw()
 //arduino stuff movement
   //light sensor
   int y = arduino.analogRead(5);
-  //mic sensor
-  int z = arduino.analogRead(4);
-    if (z>310){
+  //button sensor
+  int rButton = arduino.analogRead(1);
+  int lButton = arduino.analogRead(6);
+    if (y>25){
      background(245,163,62);
      
      //talking crow
@@ -73,6 +74,31 @@ void draw()
      line(225,150,305,235);
      noStroke();
   } 
+  if(rButton > 20){
+   background(245,163,62);
+   drawCrow();
+  }
+  if(lButton > 20){
+   background(48,48,48); 
+   drawCrow();
+   fill(48,48,48);
+   triangle(275,140,305,240,220,155);
+   //leg
+   rect(200,320,5,40);
+   rect(220,320,5,40);
+   rect(200,360,5,40);
+   rect(220,360,5,40);
+   //feet
+   arc(200,400,40,20,0,PI*3/4);
+   arc(220,400,40,20,0,PI*5/8);
+   //knees
+   ellipse(203,360,10,10);
+   ellipse(223,360,10,10);
+   //thighs  
+   arc(200,320,25,30,0,PI*3/4);
+   arc(220,320,25,30,0,PI*3/4);
+
+  }
 }
 
 void drawCrow(){
